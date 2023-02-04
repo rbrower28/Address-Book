@@ -5,14 +5,14 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "swagger-autogen": "node ./swagger.js"
   },
   "author": "Ryan Brower",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/rbrower28/address-book/issues"
+    "url": "https://github.com/rbrower28/Address-Book/issues"
   },
-  "homepage": "https://github.com/rbrower28/address-book#readme",
+  "homepage": "https://github.com/rbrower28/Address-Book#readme",
   "dependencies": {
     "body-parser": "^1.20.1",
     "dotenv": "^16.0.3",

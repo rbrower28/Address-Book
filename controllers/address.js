@@ -12,7 +12,7 @@ const getAll = async (req, res, next) => {
 
 const getSingle = async (req, res, next) => {
   const userId = new ObjectId(req.params.id);
-  const result = await mongodb.getDb().db('testdb').collection('address').find({ _id: userId });
+  const result = await mongodb.getDb().db('addressbook').collection('address').find({ _id: userId });
   result.toArray().then((lists) => {
     res.setHeader('Content-Type', 'application/json');
     res.status(200).json(lists[0]);
@@ -21,11 +21,14 @@ const getSingle = async (req, res, next) => {
 
 const createAddress = async (req, res) => {
   const address = {
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
-    email: req.body.email,
-    favoriteColor: req.body.favoriteColor,
-    birthday: req.body.birthday
+    resident: req.body.resident,
+    number: req.body.number,
+    street: req.body.street,
+    unit: req.body.unit,
+    city: req.body.city,
+    state: req.body.state,
+    country: req.body.country,
+    zip: req.body.zip
   };
   const response = await mongodb.getDb().db('addressbook').collection('address').insertOne(address);
   if (response.acknowledged) {
@@ -38,11 +41,14 @@ const createAddress = async (req, res) => {
 const updateAddress = async (req, res) => {
   const userId = new ObjectId(req.params.id);
   const address = {
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
-    email: req.body.email,
-    favoriteColor: req.body.favoriteColor,
-    birthday: req.body.birthday
+    resident: req.body.resident,
+    number: req.body.number,
+    street: req.body.street,
+    unit: req.body.unit,
+    city: req.body.city,
+    state: req.body.state,
+    country: req.body.country,
+    zip: req.body.zip
   };
   const response = await mongodb.getDb().db('addressbook').collection('address').replaceOne({ _id: userId }, address);
   console.log(response);
