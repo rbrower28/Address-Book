@@ -9,6 +9,10 @@
   },
   "author": "Ryan Brower",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rbrower28/address-book/issues"
+  },
+  "homepage": "https://github.com/rbrower28/address-book#readme",
   "dependencies": {
     "body-parser": "^1.20.1",
     "dotenv": "^16.0.3",

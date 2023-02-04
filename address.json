@@ -1,0 +1,32 @@
+{
+  "address1":{
+    "resident":"Sherlock Holmes",
+    "number":"221B",
+    "street":"Baker St",
+    "unit":"B",
+    "city":"London",
+    "state":"N/A",
+    "country":"UK",
+    "zip":"N/A"
+  },
+  "address2":{
+    "resident":"The President",
+    "number":"1600",
+    "street":"Pennsylvania Ave",
+    "unit":"N/A",
+    "city":"Washington",
+    "state":"D.C.",
+    "country":"USA",
+    "zip":"20230"
+  },
+  "address3":{
+    "resident":"P. Sherman",
+    "number":"42",
+    "street":"Wallaby way",
+    "unit":"N/A",
+    "city":"Sydney",
+    "state":"New South Wales",
+    "country":"Australia",
+    "zip":"2059"
+  }
+}
