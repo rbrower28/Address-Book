@@ -1,0 +1,37 @@
+// LOCALHOST
+###
+GET http://localhost:3000/address
+
+###
+POST http://localhost:3000/address HTTP/1.1
+content-type: application/json
+
+{
+    "resident":"Simpson Family",
+    "number":"742",
+    "street":"Evergreen Terrace",
+    "unit":"N/A",
+    "city":"Springfield",
+    "state":"Oregon",
+    "country":"USA",
+    "zip":"97403"
+}
+
+// RENDER
+###
+GET https://addressbook-iyzx.onrender.com/address
+
+###
+POST https://addressbook-iyzx.onrender.com/address HTTP/1.1
+content-type: application/json
+
+{
+    "resident":"Simpson Family",
+    "number":"742",
+    "street":"Evergreen Terrace",
+    "unit":"N/A",
+    "city":"Springfield",
+    "state":"Oregon",
+    "country":"USA",
+    "zip":"97403"
+}
