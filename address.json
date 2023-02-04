@@ -28,5 +28,15 @@
     "state":"New South Wales",
     "country":"Australia",
     "zip":"2059"
+  },
+  "address4":{
+    "resident":"Simpson Family",
+    "number":"742",
+    "street":"Evergreen Terrace",
+    "unit":"N/A",
+    "city":"Springfield",
+    "state":"Oregon",
+    "country":"USA",
+    "zip":"97403"
   }
 }
