@@ -91,7 +91,7 @@ const deleteAddress = async (req, res) => {
     const response = await mongodb.getDb().db('addressbook').collection('address').deleteOne({ _id: userId }, true);
     console.log(response);
     if (response.deletedCount > 0) {
-      res.status(204).send();
+      res.status(200).send();
     } else {
       res.status(500).json(response.error || 'Something happened in contact.');
     }
