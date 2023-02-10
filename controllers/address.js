@@ -28,21 +28,25 @@ const getSingle = async (req, res, next) => {
 };
 
 const createAddress = async (req, res) => {
-  const address = {
-    resident: req.body.resident,
-    number: req.body.number,
-    street: req.body.street,
-    unit: req.body.unit,
-    city: req.body.city,
-    state: req.body.state,
-    country: req.body.country,
-    zip: req.body.zip
-  };
-  const response = await mongodb.getDb().db('addressbook').collection('address').insertOne(address);
-  if (response.acknowledged) {
-    res.status(201).json(response);
-  } else {
-    res.status(500).json(response.error || 'Something happened in contact.');
+  try {
+    const address = {
+      resident: req.body.resident,
+      number: req.body.number,
+      street: req.body.street,
+      unit: req.body.unit,
+      city: req.body.city,
+      state: req.body.state,
+      country: req.body.country,
+      zip: req.body.zip
+    };
+    const response = await mongodb.getDb().db('addressbook').collection('address').insertOne(address);
+    if (response.acknowledged) {
+      res.status(201).json(response);
+    } else {
+      res.status(500).json(response.error || 'Something happened in contact.');
+    }
+  } catch (err) {
+    res.status(400).json({ message: err });
   }
 };
 

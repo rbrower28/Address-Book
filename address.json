@@ -1,5 +1,6 @@
 {
-  "address1":{
+  "address1":
+  {
     "resident":"Sherlock Holmes",
     "number":"221B",
     "street":"Baker St",
@@ -9,7 +10,8 @@
     "country":"UK",
     "zip":"N/A"
   },
-  "address2":{
+  "address2":
+  {
     "resident":"The President",
     "number":"1600",
     "street":"Pennsylvania Ave",
@@ -19,7 +21,8 @@
     "country":"USA",
     "zip":"20230"
   },
-  "address3":{
+  "address3":
+  {
     "resident":"P. Sherman",
     "number":"42",
     "street":"Wallaby way",
@@ -29,7 +32,8 @@
     "country":"Australia",
     "zip":"2059"
   },
-  "address4":{
+  "address4":
+  {
     "resident":"Simpson Family",
     "number":"742",
     "street":"Evergreen Terrace",
