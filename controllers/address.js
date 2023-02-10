@@ -3,20 +3,28 @@ const ObjectId = require("mongodb").ObjectId;
 
 
 const getAll = async (req, res, next) => {
-  const result = await mongodb.getDb().db('addressbook').collection('address').find();
-  result.toArray().then((lists) => {
-    res.setHeader('Content-Type', 'application/json');
-    res.status(200).json(lists);
-  });
+  try {
+    const result = await mongodb.getDb().db('addressbook').collection('address').find();
+    result.toArray().then((lists) => {
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json(lists);
+    });
+  } catch (err) {
+    res.status(400).json({ message: err });
+  }
 };
 
 const getSingle = async (req, res, next) => {
-  const userId = new ObjectId(req.params.id);
-  const result = await mongodb.getDb().db('addressbook').collection('address').find({ _id: userId });
-  result.toArray().then((lists) => {
-    res.setHeader('Content-Type', 'application/json');
-    res.status(200).json(lists[0]);
-  });
+  try {
+    const userId = new ObjectId(req.params.id);
+    const result = await mongodb.getDb().db('addressbook').collection('address').find({ _id: userId });
+    result.toArray().then((lists) => {
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json(lists[0]);
+    });
+  } catch (err) {
+    res.status(400).json({ message: err });
+  }
 };
 
 const createAddress = async (req, res) => {
@@ -40,33 +48,51 @@ const createAddress = async (req, res) => {
 
 const updateAddress = async (req, res) => {
   const userId = new ObjectId(req.params.id);
-  const address = {
-    resident: req.body.resident,
-    number: req.body.number,
-    street: req.body.street,
-    unit: req.body.unit,
-    city: req.body.city,
-    state: req.body.state,
-    country: req.body.country,
-    zip: req.body.zip
-  };
-  const response = await mongodb.getDb().db('addressbook').collection('address').replaceOne({ _id: userId }, address);
-  console.log(response);
-  if (response.modifiedCount > 0) {
-    res.status(204).send();
-  } else {
-    res.status(500).json(response.error || 'Something happened in contact.');
+
+  try {
+    // gather previous data
+    const result = await mongodb.getDb().db('addressbook').collection('address').find({ _id: userId });
+    result.toArray().then((lists) => {
+      updateData(lists[0]);
+    });
+  } catch (err) {
+    res.status(400).json({ message: err });
+  }
+
+  async function updateData(item) {
+
+    const address = {
+      resident: req.body.resident || item.resident,
+      number: req.body.number || item.number,
+      street: req.body.street || item.street,
+      unit: req.body.unit || item.unit,
+      city: req.body.city || item.city,
+      state: req.body.state || item.state,
+      country: req.body.country || item.country,
+      zip: req.body.zip || item.zip
+    };
+    const response = await mongodb.getDb().db('addressbook').collection('address').replaceOne({ _id: userId }, address);
+    console.log(response);
+    if (response.modifiedCount > 0) {
+      res.status(204).send();
+    } else {
+      res.status(500).json(response.error || 'Something happened in contact.');
+    }
   }
 };
 
 const deleteAddress = async (req, res) => {
-  const userId = new ObjectId(req.params.id);
-  const response = await mongodb.getDb().db('addressbook').collection('address').remove({ _id: userId }, true);
-  console.log(response);
-  if (response.deletedCount > 0) {
-    res.status(204).send();
-  } else {
-    res.status(500).json(response.error || 'Something happened in contact.');
+  try {
+    const userId = new ObjectId(req.params.id);
+    const response = await mongodb.getDb().db('addressbook').collection('address').deleteOne({ _id: userId }, true);
+    console.log(response);
+    if (response.deletedCount > 0) {
+      res.status(204).send();
+    } else {
+      res.status(500).json(response.error || 'Something happened in contact.');
+    }
+  } catch (err) {
+    res.status(400).json({ message: err });
   }
 };
 
